@@ -13,7 +13,8 @@ class OCRModel:
             lang="en",
             use_doc_orientation_classify=True,
             use_doc_unwarping=False,
-            use_textline_orientation=False
+            use_textline_orientation=False,
+            enable_mkldnn=False
         )
 
     def process_ocr(self, image, image_path):
@@ -37,8 +38,11 @@ class OCRModel:
                 }
                 data["ocr_result"].append(ocr_item)
             # File paths
-            text_file_path = image_path.with_suffix(".txt")
-            json_file_path = image_path.parent / f"{image_path.stem}_ocr.json"
+            #text_file_path = image_path.with_suffix(".txt")
+            #json_file_path = image_path.parent / f"{image_path.stem}_ocr.json"
+            # File paths
+            text_file_path = image_path.parent.parent / f"chatgpt_images/paddle_text_files/{image_path.stem}.txt"
+            json_file_path = image_path.parent.parent / f"chatgpt_images/paddle_json_files/{image_path.stem}_ocr.json"
             # Save OCR text
             text_file_path.write_text(
                 "\n".join(texts),
