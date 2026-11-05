@@ -2,3 +2,9 @@
 datasets/
 .DS_Store
 /play_ground.py
+__pycache__/
+*.pyc
+outputs/
+logs/
+*.jsonl
+hf_cache/
